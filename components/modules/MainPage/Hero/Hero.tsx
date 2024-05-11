@@ -12,7 +12,6 @@ import HeroSlide from './HeroSlide'
 /*import ProductSubtitle from '@/components/elements/ProductSubtitle/ProductSubtitle'*/
 import styles from '@/styles/main-page/index.module.scss'
 import stylesForAd from '@/styles/ad/index.module.scss'
-import productSubtitleStyles from '@/styles/productSubtitle/index.module.scss'
 import ProductSubtitle from '@/components/elements/ProductSubtitle/ProductSubtitle'
 
 const Hero = () => {

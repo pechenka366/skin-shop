@@ -1,6 +1,4 @@
 import { useUnit } from 'effector-react'
-/*import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'*/
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { forwardRef } from 'react'
@@ -8,19 +6,12 @@ import { withClickOutside } from '@/components/hocs/withClickOutside'
 import { useLang } from '@/hooks/useLang'
 import { IWrappedComponentProps } from '@/types/hocs'
 import { getCartItemsFx } from '@/api/cart'
-import { $cart, $cartFromLs } from '@/context/cart'
 import CartPopupItem from './CartPopupItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useCartByAuth } from '@/hooks/useCartByAuth'
 import { useTotalPrice } from '@/hooks/useTotalPrice'
 import { formatPrice } from '@/lib/utils/common'
-/*import CartPopupItem from './CartPopupItem'
-import { useTotalPrice } from '@/hooks/useTotalPrice'
-import { formatPrice } from '@/lib/utils/common'
-import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
-import { getCartItemsFx } from '@/context/cart'
-import { $cart, $cartFromLs } from '@/context/cart/state'*/
 
 const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
   ({ open, setOpen }, ref) => {
@@ -34,13 +25,12 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
     return (
       <div className='cart-popup' ref={ref}>
         <Link
-          className={`header__links__item__btn header__links__item__btn--cart ${
-            currentCartByAuth.length ? 'not-empty' : ''
-          }`}
+          className={`header__links__item__btn header__links__item__btn--cart ${currentCartByAuth.length ? 'not-empty' : ''
+            }`}
           href='/cart'
           onMouseEnter={handleShowPopup}
         />
-          {/* {!!currentCartByAuth.length && <span className='not-empty' />} */}
+        {/* {!!currentCartByAuth.length && <span className='not-empty' />} */}
 
         <AnimatePresence>
           {open && (
@@ -59,16 +49,16 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
               <h3 className='cart-popup__title'>
                 {translations[lang].breadcrumbs.cart}
               </h3>
-                {spinner ? (
-                  <div className="cart-popup__spinner">
-                    <FontAwesomeIcon
-                      icon={faSpinner}
-                      spin
-                      color='#fff'
-                      size='3x'
-                      />
-                  </div>) :
-              ( <ul className='list-reset cart-popup__cart-list'>
+              {spinner ? (
+                <div className="cart-popup__spinner">
+                  <FontAwesomeIcon
+                    icon={faSpinner}
+                    spin
+                    color='#fff'
+                    size='3x'
+                  />
+                </div>) :
+                (<ul className='list-reset cart-popup__cart-list'>
                   <AnimatePresence>
                     {currentCartByAuth.length ? (
                       currentCartByAuth.map((item) => (
@@ -111,34 +101,3 @@ export default withClickOutside(CartPopup)
 function useGoodsByAuth($cart: any, $cartFromLs: any) {
   throw new Error('Function not implemented.')
 }
-/*{spinner ? (
-                <div className='cart-popup__spinner'>
-                  <FontAwesomeIcon
-                    icon={faSpinner}
-                    spin
-                    color='#fff'
-                    size='3x'
-                  />
-                </div>
-              ) : (
-                <ul className='list-reset cart-popup__cart-list'>
-                  <AnimatePresence>
-                    {currentCartByAuth.length ? (
-                      currentCartByAuth.map((item) => (
-                        <motion.li
-                          key={item._id || item.clientId}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className='cart-list__item'
-                        >
-                          <CartPopupItem item={item} />
-                        </motion.li>
-                      ))
-                    ) : (
-                      <li className='cart-popup__cart-list__empty-cart' />
-                    )}
-                  </AnimatePresence>
-                </ul>
-              )}
-              */

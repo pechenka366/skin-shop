@@ -1,7 +1,6 @@
 'use client'
 import { ForwardRefExoticComponent, MutableRefObject, RefAttributes, useEffect, useRef, useState } from 'react'
 import { IWrappedComponentProps } from '@/types/hocs'
-import { useClickOutside } from '@/hooks/useClickOutside'
 
 export function withClickOutside(
   WrappedComponent: ForwardRefExoticComponent<

@@ -5,7 +5,6 @@ import {
   findUserByEmail,
   parseJwt,
 } from '@/lib/utils/api-routes'
-import { use } from 'react'
 import { IUser } from '@/types/user'
 
 export async function GET(req: Request) {

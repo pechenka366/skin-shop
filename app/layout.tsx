@@ -15,8 +15,6 @@ import './globalStyles/auth-popup.css'
 import './globalStyles/header-profile.css'
 import './globalStyles/cookie-popup.css'
 import './globalStyles/breadcrumbs.css'
-import Layout from "@/components/layouts/Layout";
-import { showQuickViewModal } from "@/context/modals";
 import PagesLayout from "@/components/layouts/PagesLayout";
 
 export const metadata: Metadata = {

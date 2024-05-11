@@ -1,5 +1,4 @@
 import { toast } from 'react-hot-toast'
-import { error } from "console"
 import { createEffect } from "effector"
 import api from './apiInstance'
 import { ILoadOneProductFx } from '@/types/goods'

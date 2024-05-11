@@ -1,4 +1,3 @@
-import { deleteProduct } from '@/lib/utils/api-routes';
 import { addProductToCartFx, deleteCartItemFx, updateCartItemCountFx } from "@/api/cart"
 import { handleJWTError } from "@/lib/utils/errors"
 import { IAddProductToCartFx, IAddProductsFromLSToCartFx, ICartItem, IDeleteCartItemsFx, IUpdateCartItemCountFx } from "@/types/cart"

@@ -4,7 +4,7 @@ import { useUnit } from 'effector-react';
 import Layout from './Layout';
 import { Next13ProgressBar } from 'next13-progressbar';
 import { closeSizeTableByCheck, handleCloseAuthPopup, removeOverflowHiddenFromBody } from '@/lib/utils/common';
-import { $openAuthPopup, openAuthPopup } from '@/context/auth';
+import { $openAuthPopup } from '@/context/auth';
 import { Toaster } from 'react-hot-toast';
 import { EarthoOneProvider } from '@eartho/one-client-react'
 import { useEffect, useState } from 'react';
@@ -18,12 +18,12 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const showSizeTable = useUnit($showSizeTable)
   const openAuthPopup = useUnit($openAuthPopup)
 
+  useEffect(() => setIsClient(true), [])
+
   const handleCloseQuickViewModal = () => {
     removeOverflowHiddenFromBody()
     closeQuickViewModal()
   }
-
-  const handleCloseSizeTable = () => closeSizeTableByCheck(showQuickViewModal)
 
   useEffect(() => {
     const checkCookie = document.cookie.indexOf('CookieBy=Skin-Shop')
@@ -31,6 +31,8 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
       ? setCookieAlertOpen(false)
       : setTimeout(() => setCookieAlertOpen(true), 3000)
   }, [])
+
+  const handleCloseSizeTable = () => closeSizeTableByCheck(showQuickViewModal)
 
   return (
     <>
@@ -68,86 +70,10 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
           </html>
         </EarthoOneProvider>
       ) : (
-        <EarthoOneProvider clientId={`${process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID}`}
-        >
-          <html lang="en">
-            <body>
-              <Next13ProgressBar height='4px' color='#9466FF' showOnShallow />
-              <Layout>{children}</Layout>
-              <div className={`quick-view-modal-overlay ${showQuickViewModal ? 'overlay-active' : ''
-                }`}
-                onClick={handleCloseQuickViewModal}
-              />
-              <div className={`size-table-overlay ${showSizeTable ? 'overlay-active' : ''
-                }`}
-                onClick={handleCloseSizeTable}
-              />
-              <div className={`auth-overlay ${openAuthPopup ? 'overlay-active`' : ''
-                }`}
-                onClick={handleCloseAuthPopup}
-              />
-              {cookieAlertOpen && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.5 }}
-                  className='cookie-popup'
-                >
-                  <CookieAlert setCookieAlertOpen={setCookieAlertOpen} />
-                </motion.div>
-              )}
-              <Toaster position='top-center' reverseOrder={false} />
-            </body>
-          </html>
-        </EarthoOneProvider>
+        <></>
       )}
     </>
   );
 };
 
 export default PagesLayout;
-
-/**
- * 'use client'
-import { $showQuickViewModal, $showSizeTable, closeQuickViewModal, showSizeTable } from '@/context/modals';
-import { useUnit } from 'effector-react';
-import Layout from './Layout';
-import { closeSizeTableByCheck, handleCloseAuthPopup, removeOverflowHiddenFromBody } from '@/lib/utils/common';
-import { $openAuthPopup, openAuthPopup } from '@/context/auth';
-import { Toaster } from 'react-hot-toast';
-import { EarthoOneProvider } from '@eartho/one-client-react'
-
-const PagesLayout = ({ children }: { children: React.ReactNode }) => {
-  const showQuickViewModal = useUnit($showQuickViewModal)
-  const showSizeTable = useUnit($showSizeTable)
-  const openAuthPopup = useUnit($openAuthPopup)
-
-  const handleCloseQuickViewModal = () => {
-    removeOverflowHiddenFromBody()
-    closeQuickViewModal()
-  }
-
-  const handleCloseSizeTable = () => closeSizeTableByCheck(showQuickViewModal)
-
-  return (
-    <>
-        <EarthoOneProvider clientId={`${process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID}`} >
-        <html lang="en">
-          <body>
-            <Layout>{children}</Layout>
-            <div className={`quick-view-modal-overlay ${showQuickViewModal ? 'overlay-active' : ''}`}
-              onClick={handleCloseQuickViewModal} />
-            <div className={`size-table-overlay ${showSizeTable ? 'overlay-active' : ''}`}
-              onClick={handleCloseSizeTable} />
-            <div className={`auth-overlay ${openAuthPopup ? 'overlay-active`' : ''}`}
-              onClick={handleCloseAuthPopup} />
-            <Toaster position='top-center' reverseOrder={false} />
-          </body>
-        </html>
-        </EarthoOneProvider>
-    </>
-  );
-};
-
-export default PagesLayout;
- */

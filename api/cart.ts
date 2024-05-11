@@ -1,9 +1,8 @@
 import { handleJWTError } from "@/lib/utils/errors"
-import { IAddProductToCartFx, IAddProductsFromLSToCartFx, ICartItem, IDeleteCartItemsFx, IUpdateCartItemCountFx } from "@/types/cart"
+import { IAddProductToCartFx, ICartItem, IDeleteCartItemsFx, IUpdateCartItemCountFx } from "@/types/cart"
 import { createEffect } from "effector"
 import toast from "react-hot-toast"
 import api from './apiInstance'
-import { loadCartItems } from "@/context/cart"
 
 export const getCartItemsFx = createEffect(async ({ jwt }: { jwt: string }) => {
   try {

@@ -6,7 +6,7 @@ import MobileNavbar from '../modules/MobileNavBar/MobileNavBar';
 import { AnimatePresence, motion } from 'framer-motion';
 import SearchModal from '../modules/Header/SearchModal';
 import { useUnit } from 'effector-react';
-import { $searchModal, $showQuickViewModal, $showSizeTable, showQuickViewModal, showSizeTable } from '@/context/modals';
+import { $searchModal, $showQuickViewModal, $showSizeTable, } from '@/context/modals';
 import { handleCloseAuthPopup, handleCloseSearchModal } from '@/lib/utils/common';
 import Footer from '../modules/Footer/Footer';
 import { basePropsForMotion } from '@/constants/motion';
